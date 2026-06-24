@@ -292,8 +292,9 @@ export default function ProjectsSection() {
         <span className={`inline-block text-[10px] font-bold tracking-[0.22em] ${colors.invertedTextMuted} uppercase mb-3`}>
           Selected Works
         </span>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <h2 className={`text-3xl md:text-5xl font-black tracking-tight ${colors.invertedText}`}>
+       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          {/* Added whitespace-nowrap and optimized responsive text sizing */}
+          <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight whitespace-nowrap ${colors.invertedText}`}>
             <TypewriterTitle text="Featured Projects" />
           </h2>
           <p className={`${colors.invertedTextMuted} max-w-sm text-sm leading-relaxed md:text-right`}>

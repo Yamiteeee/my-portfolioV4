@@ -24,8 +24,15 @@ export const metadata: Metadata = {
   keywords: ["Jason Platino", "Full-Stack Engineer", "Software Developer Portfolio", "Next.js Portfolio", "Supabase Developer", "Web Performance"],
   authors: [{ name: "Jason Platino" }],
   creator: "Jason Platino",
-  metadataBase: new URL("https://www.jsonportfolio.fun"), // Essential for Next.js to parse relative asset links properly
   
+  // FIXED: Set to your actual apex domain (without the "t") to align with your Hostinger registry
+  metadataBase: new URL("https://jsonporfolio.fun"), 
+  
+  // GOOGLE SEARCH CONSOLE INTEGRATION: Put your verification string here
+  verification: {
+    google: "YOUR_GOOGLE_VERIFICATION_TOKEN_HERE", 
+  },
+
   // Search Engine Crawler Directives
   robots: {
     index: true,
@@ -43,13 +50,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.jsonportfolio.fun",
+    url: "https://jsonporfolio.fun", // Fixed domain typo
     title: "Jason Platino | Full-Stack Engineer & Systems Builder",
     description: "Explore the software engineering portfolio of Jason Platino. Specializing in independent full-stack architecture, high-performance Next.js apps, and maintainable systems implementation.",
     siteName: "Jason Platino Portfolio",
     images: [
       {
-        url: "/Bio/ProfilePic/Profile.jpg", // Leverage your verified public path as your fallback social card share image!
+        url: "/Bio/ProfilePic/Profile.jpg", 
         width: 1200,
         height: 630,
         alt: "Jason Platino Portfolio Preview",
