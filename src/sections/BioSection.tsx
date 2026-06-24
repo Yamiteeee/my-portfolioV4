@@ -154,8 +154,7 @@ export default function BioSection() {
           </div>
 
         </div>
-
-        {/* =====================================================================
+{/* =====================================================================
             STAGE 4 — CV CANVAS
             ===================================================================== */}
         <div className="flex flex-col gap-5 pt-6 border-t border-zinc-100">
@@ -166,7 +165,9 @@ export default function BioSection() {
                 Full résumé
               </p>
               <p className="text-xs text-zinc-400 mt-0.5">
-                Scroll to read · or download a copy
+                {/* Updated text to match responsive state context */}
+                <span className="hidden md:inline">Scroll to read · or download a copy</span>
+                <span className="inline md:hidden">Download or view your copy natively</span>
               </p>
             </div>
 
@@ -182,8 +183,9 @@ export default function BioSection() {
             </a>
           </div>
 
+          {/* 1. DESKTOP VIEW: Only visible on medium screens and up (md:block) */}
           <div
-            className={`w-full rounded-2xl overflow-hidden border ${colors.border} shadow-sm bg-zinc-50`}
+            className={`hidden md:block w-full rounded-2xl overflow-hidden border ${colors.border} shadow-sm bg-zinc-50`}
             style={{ contain: 'layout style', height: 'clamp(480px, 60vh, 780px)' }}
           >
             <iframe
@@ -192,6 +194,24 @@ export default function BioSection() {
               className="w-full h-full border-none"
               loading="lazy"
             />
+          </div>
+
+          {/* 2. MOBILE & TABLET VIEW: Only visible on mobile/tablets, hidden on desktop (md:hidden) */}
+          <div className={`block md:hidden w-full text-center py-10 px-5 rounded-2xl border ${colors.border} bg-zinc-50/50`}>
+            <p className="text-xs text-zinc-500 max-w-xs mx-auto mb-5 leading-relaxed">
+              Mobile devices do not support live embedded PDF views natively. Use the action below to review my full structural profile.
+            </p>
+            <a
+              href={bioData.cvSrc}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white bg-zinc-900 hover:bg-zinc-800 transition-all rounded-xl shadow-md"
+            >
+              <span>View Full Document</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-3.5 h-3.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
+            </a>
           </div>
 
         </div>
