@@ -2,6 +2,7 @@
 "use client";
 
 import Hero from '@/sections/Hero';
+import BioSection from '@/sections/BioSection'; // 👈 Import here
 import ProjectsSection from '@/sections/ProjectsSection';
 import ContactSection from '@/sections/ContactSection';
 import { useColors } from '@/components/ColorProvider';
@@ -13,10 +14,8 @@ export default function Home() {
     <main 
       className={`relative min-h-screen w-full ${colors.bg} flex flex-col space-y-16 md:space-y-32 pb-24 overflow-x-hidden transition-colors duration-500`}
     >
-      {/* Core Portfolio Sections 
-        Each section handles its own internal layering and z-indexing flawlessly.
-      */}
       <Hero />
+      <BioSection /> {/* 👈 Place here */}
       <ProjectsSection />
       <ContactSection />
     </main>
