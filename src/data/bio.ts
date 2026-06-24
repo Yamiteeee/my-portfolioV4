@@ -31,7 +31,7 @@ export const bioData: BioData = {
   "Over the past year I shipped three production apps solo at work: a Flutter ticketing system, an internal file management platform, and a learning management system — each built from scratch and handed off to real users. On the side I've been building web projects too, including a resort landing and booking page and an inventory SaaS — with more in the pipeline.",
   "My current stack is Next.js with the App Router, Supabase for auth and real-time databases, and Vercel for deployment. I care about shipping something that works, is maintainable, and doesn't need a second person to keep it alive."
 ],
-  avatarSrc: "/Bio/ProfilePic/profile.jpg",
+  avatarSrc: "/Bio/ProfilePic/Profile.jpg",
   cvSrc: "/Bio/Cv/Jason_Platino_Resume.pdf",
   cvDownloadName: "Jason_Platino_Resume.pdf",
 

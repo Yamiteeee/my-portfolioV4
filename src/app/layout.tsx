@@ -17,13 +17,14 @@ const geistMono = Geist_Mono({
 // Production-ready SEO Architecture
 export const metadata: Metadata = {
   title: {
-    default: "Jason Adrian | Systems Architect & Full-Stack Engineer",
-    template: "%s | Jason Adrian"
+    default: "Jason Platino | Full-Stack Engineer & Systems Builder",
+    template: "%s | Jason Platino"
   },
-  description: "Explore the engineering portfolio of Jason Adrian, specializing in clean architecture, performance optimization, and scalable next-generation systems.",
-  keywords: ["Jason Adrian", "Systems Architect", "Full-Stack Engineer", "Next.js Portfolio", "Software Engineer Portfolio", "Web Performance"],
-  authors: [{ name: "Jason Adrian" }],
-  creator: "Jason Adrian",
+  description: "Explore the software engineering portfolio of Jason Platino. Specializing in independent full-stack architecture, high-performance Next.js apps, and maintainable systems implementation.",
+  keywords: ["Jason Platino", "Full-Stack Engineer", "Software Developer Portfolio", "Next.js Portfolio", "Supabase Developer", "Web Performance"],
+  authors: [{ name: "Jason Platino" }],
+  creator: "Jason Platino",
+  metadataBase: new URL("https://www.jsonportfolio.fun"), // Essential for Next.js to parse relative asset links properly
   
   // Search Engine Crawler Directives
   robots: {
@@ -42,16 +43,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yourdomain.com", // Replace with your live production URL
-    title: "Jason Adrian | Systems Architect & Full-Stack Engineer",
-    description: "Explore the engineering portfolio of Jason Adrian, specializing in clean architecture, performance optimization, and scalable next-generation systems.",
-    siteName: "Jason Adrian Portfolio",
+    url: "https://www.jsonportfolio.fun",
+    title: "Jason Platino | Full-Stack Engineer & Systems Builder",
+    description: "Explore the software engineering portfolio of Jason Platino. Specializing in independent full-stack architecture, high-performance Next.js apps, and maintainable systems implementation.",
+    siteName: "Jason Platino Portfolio",
     images: [
       {
-        url: "https://yourdomain.com/og-image.png", // Recommended: 1200x630px preview image
+        url: "/Bio/ProfilePic/Profile.jpg", // Leverage your verified public path as your fallback social card share image!
         width: 1200,
         height: 630,
-        alt: "Jason Adrian Portfolio Preview",
+        alt: "Jason Platino Portfolio Preview",
       },
     ],
   },
@@ -59,10 +60,9 @@ export const metadata: Metadata = {
   // X / Twitter Cards
   twitter: {
     card: "summary_large_image",
-    title: "Jason Adrian | Systems Architect & Full-Stack Engineer",
-    description: "Systems architecture and high-performance engineering by Jason Adrian.",
-    creator: "@yourtwitterhandle", // Optional: your twitter handle
-    images: ["https://yourdomain.com/og-image.png"],
+    title: "Jason Platino | Full-Stack Engineer & Systems Builder",
+    description: "Independent full-stack engineering and high-performance apps by Jason Platino.",
+    images: ["/Bio/ProfilePic/Profile.jpg"],
   },
 
   // High-Contrast Web Tab Optimization (Optimized for 16x16 / 32x32 viewing)
@@ -81,7 +81,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-50">
         <ColorProvider>
           {children}
         </ColorProvider>
