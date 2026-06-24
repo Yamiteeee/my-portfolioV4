@@ -3,22 +3,14 @@
 
 import React from 'react';
 import { useColors } from '@/components/ColorProvider';
+import TypewriterTitle from '@/components/TypewriterTitle'; // Import typing system
 
 export default function Hero() {
   const colors = useColors();
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden select-none">
+    <section className="relative min-h-[75vh] flex flex-col justify-center items-center text-center px-4 overflow-hidden select-none z-10">
       
-      {/* --- PREMIUM ARCHITECTURAL GRID BACKDROP --- */}
-      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.12]">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#a1a1aa_1px,transparent_1px),linear-gradient(to_bottom,#a1a1aa_1px,transparent_1px)] bg-[size:4.5rem_4.5rem]" />
-        <div className={`absolute inset-0 ${colors.bg} [mask-image:radial-gradient(circle_at_center,transparent_20%,#000_100%)]`} />
-      </div>
-
-      {/* --- RADIAL AMBIENT GLOW --- */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-zinc-400/30 rounded-full blur-[140px] pointer-events-none z-0 mix-blend-multiply dark:mix-blend-screen" />
-
       {/* --- MAIN HERO CONTENT CONTAINER --- */}
       <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
         
@@ -28,15 +20,20 @@ export default function Hero() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
           </span>
-          Available for Q3/Q4 Projects
+          Available for Remote Work & Freelance Projects
         </div>
         
-        {/* Editorial Typographic Header */}
+        {/* Editorial Typographic Header with Staggered Typewriter Sequences */}
         <h1 className={`text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-[1.02] mb-6 max-w-3xl ${colors.text}`}>
-          Building robust software systems with <span className="text-zinc-400 font-bold font-serif italic pr-1">structural</span> precision.
+          <TypewriterTitle text="Architecting robust Web Applications & " />
+          <span className="text-zinc-400 font-bold font-serif italic pr-1 inline-block">
+            {/* Starts typing right as the main sentence segment reaches completion */}
+            <TypewriterTitle text="scalable" delay={1.1} />
+          </span>
+          <TypewriterTitle text=" software systems." delay={1.4} />
         </h1>
         
-        {/* Professional Human Copy (No AI Clichés) */}
+        {/* Professional Human Copy */}
         <p className={`${colors.textMuted} text-base sm:text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-normal px-4`}>
           Independent Full-Stack Engineer specializing in high-performance Next.js architectures, scalable data workflows, and polished interactive frontends.
         </p>
@@ -47,9 +44,9 @@ export default function Hero() {
           {/* Primary Button with Interactive Sliding Arrow */}
           <a 
             href="#projects" 
-            className="group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-300 bg-zinc-900 text-stone-50 hover:bg-zinc-800 shadow-md active:scale-[0.98]"
+            className={`group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-300 ${colors.buttonBg} shadow-md active:scale-[0.98]`}
           >
-            Explore Systems
+            <span>Explore Systems</span>
             <svg 
               className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1" 
               fill="none" 
@@ -64,7 +61,7 @@ export default function Hero() {
           {/* Secondary Button with Clean Document / Contact Icon */}
           <a 
             href="#contact" 
-            className={`group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 text-sm font-semibold rounded-xl border transition-all duration-300 bg-white/80 backdrop-blur-sm text-zinc-900 ${colors.border} hover:bg-stone-50/80 shadow-sm active:scale-[0.98]`}
+            className={`group flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-4 text-sm font-semibold rounded-xl border transition-all duration-300 ${colors.buttonSecondary} ${colors.border} shadow-sm active:scale-[0.98]`}
           >
             <svg 
               className="w-4 h-4 text-zinc-500 transition-colors duration-300 group-hover:text-zinc-900" 
@@ -75,7 +72,7 @@ export default function Hero() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Get In Touch
+            <span>Get In Touch</span>
           </a>
         </div>
       </div>

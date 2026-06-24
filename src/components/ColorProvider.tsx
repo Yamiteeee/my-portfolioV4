@@ -9,10 +9,12 @@ const monochromeTheme = {
   cardBg: "bg-white", // Warm white card surfaces to subtly float over the cream background
   border: "border-zinc-200/80", // Super gentle, faint border lines
   textMuted: "text-zinc-500", // Soft graphite tone for descriptions
-  buttonBg: "bg-zinc-800 text-stone-50 hover:bg-zinc-700", // Softer solid buttons
-  buttonSecondary: "bg-transparent text-zinc-800 border border-zinc-300 hover:bg-stone-100/50",
+  
+  // Clean architectural global actions
+  buttonBg: "bg-zinc-900 text-stone-50 hover:bg-zinc-800", 
+  buttonSecondary: "bg-white/80 text-zinc-900 backdrop-blur-sm hover:bg-stone-50/80",
 
-  // Softened inverted tokens for the emphasis sections (e.g., Contact)
+  // Softened inverted tokens for emphasis sections
   invertedCardBg: "bg-zinc-900", // Warm midnight charcoal instead of pitch black
   invertedText: "text-stone-50", // Soft cream text so it's gentle on the eyes
   invertedTextMuted: "text-zinc-400", 

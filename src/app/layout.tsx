@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Minimal Portfolio",
+  title: "Jason Adrian | Portfolio",
   description: "A clean, monochrome developer portfolio built with Next.js",
 };
 

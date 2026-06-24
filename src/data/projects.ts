@@ -7,7 +7,7 @@ export interface Project {
   tags: string[];
   folderSlug: string; 
   imageExtension: 'png' | 'jpg' | 'jpeg' | 'webp';
-  imageCount?: number; // 👈 Add this single number flag instead of names!
+  imageCount?: number; 
   projectUrl?: string;
   githubUrl?: string;
 }
@@ -20,7 +20,9 @@ export const projectsData: Project[] = [
     tags: ["Next.js", "Tailwind CSS", "Framer Motion", "PostgreSQL" , "Supabase" ],
     folderSlug: "inventory-saas",
     imageExtension: "jpg",
-    imageCount: 5, // 👈 Means you have 1.jpg, 2.jpg, 3.jpg, 4.jpg inside that folder!
+    imageCount: 5,
+    projectUrl: "https://inventory-saas-kappa.vercel.app", 
+    githubUrl: "https://github.com/Yamiteeee/inventory-saas", 
   },
   {
     id: "lms",
@@ -29,7 +31,8 @@ export const projectsData: Project[] = [
     tags: ["Next.js", "Express.js", "Mysql", "Tailwind CSS", "TypeScript" , "Proxmox" , "Ubuntu"],
     folderSlug: "lms",
     imageExtension: "png",
-    imageCount: 5, // 👈 Means you have 1.png, 2.png, 3.png inside that folder!
+    imageCount: 5,
+    // Leaving githubUrl out if this one is a private repository!
   },
   {
     id: "soliya-resort",
@@ -39,6 +42,8 @@ export const projectsData: Project[] = [
     folderSlug: "soliya-resort",
     imageExtension: "jpg",
     imageCount: 4,
+    projectUrl: "https://soliya-resort.vercel.app",
+    githubUrl: "https://github.com/Yamiteeee/soliya-resort",
   },
   {
     id: "spc-file-storage",
@@ -48,6 +53,7 @@ export const projectsData: Project[] = [
     folderSlug: "spc-file-storage",
     imageExtension: "jpg",
     imageCount: 12,
+    projectUrl: "https://spcdrive.vercel.app",
   },
   {
     id: "ticketing-app",
@@ -57,5 +63,6 @@ export const projectsData: Project[] = [
     folderSlug: "ticketing-app",
     imageExtension: "jpg",
     imageCount: 13,
+    // Works perfectly without links too! It will just show the beautiful layout slider.
   }
 ];
