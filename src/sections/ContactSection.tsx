@@ -35,9 +35,9 @@ export default function ContactSection() {
               max-w-2xl and caused asymmetric clipping on narrow screens).
               Font scale tightened on mobile: text-3xl → sm:text-4xl → md:text-5xl
               so long typewriter strings never overflow the card edge.        */}
-          <h2
-            className={`w-full text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter leading-[1.1] mb-6 ${colors.invertedText}`}
-          >
+                  <h2
+              className={`w-full text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-black tracking-tighter leading-[1.1] mb-6 ${colors.invertedText}`}
+            >
             <TypewriterTitle text="Let's collaborate on your " />
             <span className="text-zinc-500 font-bold font-serif italic pr-1 inline-block">
               <TypewriterTitle text="next" delay={1.0} />
