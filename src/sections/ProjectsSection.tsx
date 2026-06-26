@@ -1,19 +1,24 @@
-// src/sections/ProjectsSection.tsx
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Section from '@/components/Section';
 import TypewriterTitle from '@/components/TypewriterTitle';
 import { projectsData, type Project } from '@/data/projects';
 import { useColors } from '@/components/ColorProvider';
 
 // ─── Status badge ─────────────────────────────────────────────────────────────
-// Solid backgrounds — never transparent — so they're readable over any image
 const STATUS_CONFIG = {
   live:          { label: 'Live',        className: 'bg-emerald-500 text-white border-emerald-600' },
   internal:      { label: 'Internal',    className: 'bg-zinc-700   text-zinc-200 border-zinc-600'  },
   'in-progress': { label: 'In Progress', className: 'bg-amber-500  text-white    border-amber-600' },
 } as const;
+
+// Strict priority mapping engine
+const STATUS_PRIORITY: Record<keyof typeof STATUS_CONFIG, number> = {
+  'live': 1,
+  'in-progress': 2,
+  'internal': 3,
+};
 
 function StatusBadge({ status }: { status: keyof typeof STATUS_CONFIG }) {
   const cfg = STATUS_CONFIG[status];
@@ -45,15 +50,14 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
         />
-        {/* Scrim — only at the bottom so the badge area stays clean */}
         <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
 
-        {/* Status badge — solid bg, always readable */}
+        {/* Status badge */}
         <div className="absolute top-3 left-3 drop-shadow-sm">
           <StatusBadge status={status} />
         </div>
 
-        {/* Action buttons — solid dark bg, always readable */}
+        {/* Action buttons */}
         <div
           className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           onClick={(e) => e.stopPropagation()}
@@ -89,7 +93,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         </div>
       </div>
 
-      {/* Card body — white, clearly separated from the dark section bg */}
+      {/* Card body */}
       <div className="flex flex-col flex-1 p-5 gap-3 bg-white">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-sm font-bold text-zinc-900 leading-snug">
@@ -122,7 +126,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         {project.imageCount && project.imageCount > 1 && (
           <div className="flex items-center gap-1.5 pt-1 text-[10px] text-zinc-400 font-medium">
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 00(1.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>
             {project.imageCount} screenshots · click to browse
           </div>
@@ -284,6 +288,22 @@ export default function ProjectsSection() {
   const colors = useColors();
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
+  // FIXED: Memoise and sort projectsData by requested status alignment hierarchies
+  const sortedProjects = useMemo(() => {
+    return [...projectsData].sort((a, b) => {
+      const statusA = a.status ?? 'live';
+      const statusB = b.status ?? 'live';
+      return STATUS_PRIORITY[statusA] - STATUS_PRIORITY[statusB];
+    });
+  }, []);
+
+  // Legend sorting to visually match layout presentation matrix output
+  const sortedLegendStatus = useMemo(() => {
+    return (Object.keys(STATUS_CONFIG) as Array<keyof typeof STATUS_CONFIG>).sort(
+      (a, b) => STATUS_PRIORITY[a] - STATUS_PRIORITY[b]
+    );
+  }, []);
+
   return (
     <Section id="projects">
 
@@ -292,8 +312,7 @@ export default function ProjectsSection() {
         <span className={`inline-block text-[10px] font-bold tracking-[0.22em] ${colors.invertedTextMuted} uppercase mb-3`}>
           Selected Works
         </span>
-       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          {/* Added whitespace-nowrap and optimized responsive text sizing */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight whitespace-nowrap ${colors.invertedText}`}>
             <TypewriterTitle text="Featured Projects" />
           </h2>
@@ -305,7 +324,7 @@ export default function ProjectsSection() {
 
         {/* Legend */}
         <div className="flex items-center gap-4 mt-6 pt-5 border-t border-zinc-800/60">
-          {(Object.keys(STATUS_CONFIG) as Array<keyof typeof STATUS_CONFIG>).map((s) => (
+          {sortedLegendStatus.map((s) => (
             <StatusBadge key={s} status={s} />
           ))}
         </div>
@@ -313,7 +332,7 @@ export default function ProjectsSection() {
 
       {/* Grid */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-4">
-        {projectsData.map((project: Project) => (
+        {sortedProjects.map((project: Project) => (
           <ProjectCard
             key={project.id}
             project={project}

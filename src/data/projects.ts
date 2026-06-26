@@ -66,6 +66,21 @@ export const projectsData: Project[] = [
     projectUrl: "https://spcdrive.vercel.app",
     // No githubUrl — internal company project
   },
+
+      {
+      id: "aplaya-boracay",
+      title: "Aplaya Boracay",
+      description: "A premium, high-performance web experience for a luxury beachfront restaurant in Boracay. Implements client-side database simulation via mock data files, custom UI carousels, and adaptive device viewports.",
+      tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Mock Data Architecture"],
+      folderSlug: "BoracayBar",
+      imageExtension: "jpg", 
+      imageCount: 4,         
+      status: "live",
+      role: "Solo · Full Stack (Mock Backend)",
+      projectUrl: "https://boracay-resto-bar.vercel.app",
+      githubUrl: "https://github.com/Yamiteeee/boracay-resto-bar", 
+    },
+
   {
     id: "ticketing-app",
     title: " Mobile Ticketing  System App",
