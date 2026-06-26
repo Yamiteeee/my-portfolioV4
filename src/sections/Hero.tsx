@@ -4,6 +4,7 @@
 import React from 'react';
 import { useColors } from '@/components/ColorProvider';
 import TypewriterTitle from '@/components/TypewriterTitle'; // Import typing system
+import { RetypingWord } from '@/components/typingdeletion'; // Import retyping system
 
 export default function Hero() {
   const colors = useColors();
@@ -23,16 +24,38 @@ export default function Hero() {
           Available for Remote Work & Freelance Projects
         </div>
         
-        {/* Editorial Typographic Header with Staggered Typewriter Sequences */}
-        <h1 className={`text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-[1.02] mb-6 max-w-3xl ${colors.text}`}>
-          <TypewriterTitle text="Architecting robust Web Applications & " />
-          <span className="text-zinc-400 font-bold font-serif italic pr-1 inline-block">
-            {/* Starts typing right as the main sentence segment reaches completion */}
-            <TypewriterTitle text="scalable" delay={1.1} />
-          </span>
-          <TypewriterTitle text=" software systems." delay={1.4} />
-        </h1>
-        
+            {/* Editorial Typographic Header with Staggered Typewriter Sequences */}
+            {/* FIXED: The container uses flex-col to force exactly 4 distinct, vertically stacked centered rows */}
+            <h1 className={`flex flex-col items-center text-center text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-[1.1] mb-6 max-w-4xl mx-auto ${colors.text}`}>
+              
+              {/* LINE 1: The Verb */}
+              <span className="block w-full">
+                <TypewriterTitle text="Architecting" />
+              </span>
+              
+              {/* LINE 2: Anchor Product Segment */}
+              <span className="block w-full">
+                <TypewriterTitle text="Web Applications &" />
+              </span>
+              
+              {/* LINE 3: The Animated Loop Segment */}
+              {/* FIXED: isolated to its own block line with a structural layout height block to completely eliminate vertical jumping/twitching */}
+              <span className="block w-full text-zinc-400 font-bold font-serif italic h-[1.1em] overflow-hidden">
+                <RetypingWord 
+                  words={["scalable", "secure", "maintainable", "optimized"]} 
+                  typingSpeed={120}
+                  deletingSpeed={70}
+                  pauseDuration={2500}
+                />
+              </span>
+              
+              {/* LINE 4: Closing Framing Segment */}
+              <span className="block w-full">
+                <TypewriterTitle text="Web Experiences." delay={1.4} />
+              </span>
+
+            </h1>
+              
         {/* Professional Human Copy */}
         <p className={`${colors.textMuted} text-base sm:text-lg md:text-xl max-w-2xl mb-12 leading-relaxed font-normal px-4`}>
           Independent Full-Stack Engineer specializing in high-performance Next.js architectures, scalable data workflows, and polished interactive frontends.
