@@ -81,16 +81,30 @@ export const projectsData: Project[] = [
       githubUrl: "https://github.com/Yamiteeee/boracay-resto-bar", 
     },
 
-  {
-    id: "ticketing-app",
-    title: " Mobile Ticketing  System App",
-    description: "Mobile app for real-time ticket booking and event management, built solo and deployed inside a company. 13 screens, full booking flow.",
-    tags: ["Flutter", "Dart", "Node.js", "Rails", "Aiven", "Render"],
-    folderSlug: "ticketing-app",
-    imageExtension: "jpg",
-    imageCount: 13,
-    status: "internal",
-    role: "Solo · Mobile",
-    // No links — internal tool, company data
-  },
+      {
+      id: "job-copilot",
+      title: "Job Copilot Dashboard",
+     description: "Engineered a state-driven Kanban architecture utilizing Next.js custom hooks to enable real-time, zero-auth cross-device synchronization via dynamic REST proxy API routes. Implemented an automated background data ingestion system processing webhook payloads from a Make.com web scraper directly into a cloud-hosted Supabase PostgreSQL database, backed by a programmatic duplicate filtration layer and an algorithmic local match engine evaluation tool.",
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Make.com"],
+      folderSlug: "job-copilot",
+      imageExtension: "jpg", // Change to "png" if your images are png files
+      imageCount: 3,        // Set this to the number of screenshots you added to public/job-copilot/
+      status: "live",
+      role: "Solo · Full-Stack",
+      projectUrl: "https://job-copilot-one.vercel.app", // Update with your actual deployed app link
+      githubUrl: "https://github.com/Yamiteeee/job-copilot",   // Update with your repository link if different
+    },
+
+    {
+      id: "ticketing-app",
+      title: " Mobile Ticketing  System App",
+      description: "Mobile app for real-time ticket booking and event management, built solo and deployed inside a company. 13 screens, full booking flow.",
+      tags: ["Flutter", "Dart", "Node.js", "Rails", "Aiven", "Render"],
+      folderSlug: "ticketing-app",
+      imageExtension: "jpg",
+      imageCount: 13,
+      status: "internal",
+      role: "Solo · Mobile",
+      // No links — internal tool, company data
+    },
 ];
