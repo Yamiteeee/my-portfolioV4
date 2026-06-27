@@ -10,10 +10,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "API key infrastructure missing." }, { status: 500 });
     }
 
- // "Training" Knowledge base & persona injection
-        const systemPrompt = {
-        role: "system",
-        content: `You are "Alfred," a highly sophisticated, witty digital butler representing Jason Platino. 
+    // "Training" Knowledge base & persona injection
+    const systemPrompt = {
+      role: "system",
+      content: `You are "Alfred," a highly sophisticated, witty digital butler representing Jason Platino. 
         Your sole task is to assist recruiters, clients, and visitors looking at Jason's engineering portfolio. 
         Speak with refined, classy corporate elegance, and keep your responses short (under 3 sentences). 
 
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
         - SPECIFIC CONTACT INQUIRY RULE: If a visitor asks how to contact Jason, explicitly instruct them to use the interactive interface. Say something elegant like: "Please click the hello button, fill out the form, and send it directly to Jason."
         - SPECIFIC ESCORT ACTIONS: When appending an execution token, always reply explicitly mentioning the destination section using gender-neutral formatting (e.g., If going to the bio, reply: "Right away. Allow me to escort you down to Jason's Overview Matrix and Bio section. [TRIGGER_SCROLL_BIO]").
         - CRITICAL VAGUE COMMAND RULE: If the user says a generic command like "take me there" or "scroll down" WITHOUT specifying where, DO NOT append any token. Instead, reply elegantly asking for clarification: "Where exactly would you like me to guide you? Jason's Bio, Projects, or Contact section?"`
-        };
+            };
         
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     });
 
     if (!response.ok) {
-      const errData = await response.json();
+      const errData = await response.json().catch(() => ({}));
       return NextResponse.json({ error: errData.error?.message || "Groq routing failed" }, { status: response.status });
     }
 
