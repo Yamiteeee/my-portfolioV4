@@ -8,6 +8,7 @@ import LogoAnimation from '@/components/LogoAnimation';
 import SmoothScroll from '@/components/SmoothScroll'; // Imported your fixed Lenis component
 import { useColors } from '@/components/ColorProvider';
 import ScrollReveal from '@/components/Animation';
+import ButlerWidget from '@/components/ButlerWidget'; // Imported the AI butler component
 
 export default function Home() {
   const colors = useColors();
@@ -50,25 +51,26 @@ export default function Home() {
             </div>
           </div>
 
-          {/* =========================================================================
-              2. BIO / CV TRACK STAGE (Overview Matrix)
-              ========================================================================= */}
-          <div className="relative z-10">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full border border-zinc-200/60 bg-white shadow-sm text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-400 z-20">
-              Overview Matrix
-            </div>
+        {/* =========================================================================
+            2. BIO / CV TRACK STAGE (Overview Matrix)
+            ========================================================================= */}
+        {/* Added id="bio" right here so Alfred can target it safely */}
+        <div id="bio" className="relative z-10"> 
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 rounded-full border border-zinc-200/60 bg-white shadow-sm text-[9px] font-bold uppercase tracking-[0.2em] text-zinc-400 z-20">
+            Overview Matrix
+          </div>
 
-            <div
-              className={`bg-white border-y ${colors.border} py-14 md:py-20`}
-              style={{ contain: 'layout style' }}
-            >
-              <div style={{ willChange: 'transform' }}>
-                <ScrollReveal variant="fadeUp" delay={0.1}>
-                  <BioSection />
-                </ScrollReveal>
-              </div>
+          <div
+            className={`bg-white border-y ${colors.border} py-14 md:py-20`}
+            style={{ contain: 'layout style' }}
+          >
+            <div style={{ willChange: 'transform' }}>
+              <ScrollReveal variant="fadeUp" delay={0.1}>
+                <BioSection />
+              </ScrollReveal>
             </div>
           </div>
+        </div>
 
           {/* =========================================================================
               3. PROJECTS TRACK STAGE
@@ -144,6 +146,10 @@ export default function Home() {
               </ScrollReveal>
             </div>
           </div>
+
+          {/* ─── AMBIENT AI EXTENSION LAYER ─── */}
+          {/* Alfred will safely manage fixed viewport coordinate stack offsets right here */}
+          <ButlerWidget />
 
         </main>
       </SmoothScroll>

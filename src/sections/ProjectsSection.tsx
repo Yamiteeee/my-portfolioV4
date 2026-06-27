@@ -8,7 +8,7 @@ import { useColors } from '@/components/ColorProvider';
 
 // ─── Status badge ─────────────────────────────────────────────────────────────
 const STATUS_CONFIG = {
-  live:          { label: 'Live',        className: 'bg-emerald-500 text-white border-emerald-600' },
+  live:         { label: 'Live',        className: 'bg-emerald-500 text-white border-emerald-600' },
   internal:      { label: 'Internal',    className: 'bg-zinc-700   text-zinc-200 border-zinc-600'  },
   'in-progress': { label: 'In Progress', className: 'bg-amber-500  text-white    border-amber-600' },
 } as const;
@@ -38,8 +38,8 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
   return (
     <div
       onClick={onClick}
-      className="group relative cursor-pointer flex flex-col rounded-2xl overflow-hidden border border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-      style={{ willChange: 'transform' }}
+      className="group relative cursor-pointer flex flex-col rounded-2xl overflow-hidden border border-zinc-200/80 bg-white hover:border-zinc-400 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-1.5 active:scale-[0.99]"
+      style={{ willChange: 'transform, box-shadow' }}
     >
       {/* Thumbnail */}
       <div className="relative w-full aspect-[16/10] overflow-hidden bg-zinc-100 shrink-0">
@@ -47,19 +47,20 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         <img
           src={thumbnail}
           alt={project.title}
-          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+          className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           loading="lazy"
         />
-        <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
+        {/* Shadow gradient veil */}
+        <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
 
         {/* Status badge */}
         <div className="absolute top-3 left-3 drop-shadow-sm">
           <StatusBadge status={status} />
         </div>
 
-        {/* Action buttons */}
+        {/* Action buttons with custom sliding entrance */}
         <div
-          className="absolute top-3 right-3 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          className="absolute top-3 right-3 flex items-center gap-2 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out"
           onClick={(e) => e.stopPropagation()}
         >
           {project.githubUrl && (
@@ -68,7 +69,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
               target="_blank"
               rel="noreferrer"
               title="View source"
-              className="p-2 rounded-lg bg-zinc-900 border border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors shadow-md"
+              className="p-2 rounded-lg bg-zinc-900 border border-zinc-700 text-zinc-300 hover:text-white hover:border-zinc-500 transition-all shadow-md active:scale-90"
             >
               <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -82,10 +83,10 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
               target="_blank"
               rel="noreferrer"
               title="Open live project"
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-900 text-white font-bold text-[11px] hover:bg-zinc-700 transition-colors shadow-md"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-zinc-900 text-white font-bold text-[11px] hover:bg-zinc-700 transition-all shadow-md active:scale-95"
             >
               Live
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
               </svg>
             </a>
@@ -94,13 +95,13 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       </div>
 
       {/* Card body */}
-      <div className="flex flex-col flex-1 p-5 gap-3 bg-white">
+      <div className="flex flex-col flex-1 p-5 gap-3 bg-white transition-colors duration-300 group-hover:bg-zinc-50/30">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-sm font-bold text-zinc-900 leading-snug">
+          <h3 className="text-sm font-bold text-zinc-900 leading-snug tracking-tight transition-colors duration-300 group-hover:text-amber-600">
             {project.title}
           </h3>
           {project.role && (
-            <span className="text-[10px] text-zinc-400 font-medium shrink-0 mt-0.5 whitespace-nowrap">
+            <span className="text-[10px] font-mono tracking-wider uppercase text-zinc-400 font-medium shrink-0 mt-0.5 whitespace-nowrap">
               {project.role}
             </span>
           )}
@@ -115,7 +116,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           {project.tags.map((tag, i) => (
             <span
               key={i}
-              className="text-[10px] px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-600 border border-zinc-200 font-medium"
+              className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-600 border border-zinc-200/60 font-medium transition-all duration-300 group-hover:bg-white group-hover:border-zinc-300"
             >
               {tag}
             </span>
@@ -124,9 +125,9 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
 
         {/* Gallery hint */}
         {project.imageCount && project.imageCount > 1 && (
-          <div className="flex items-center gap-1.5 pt-1 text-[10px] text-zinc-400 font-medium">
+          <div className="flex items-center gap-1.5 pt-1 text-[10px] text-zinc-400 font-medium border-t border-zinc-100 mt-1 transition-colors duration-300 group-hover:text-zinc-500">
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 00(1.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>
             {project.imageCount} screenshots · click to browse
           </div>
@@ -171,12 +172,12 @@ function Lightbox({ project, onClose }: { project: Project; onClose: () => void 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-zinc-950/95 p-4 sm:p-8"
+      className="fixed inset-0 z-50 flex flex-col justify-center items-center bg-zinc-950/95 p-4 sm:p-8 backdrop-blur-xs"
       onClick={onClose}
     >
       {/* Top bar */}
       <div
-        className="absolute top-0 left-0 right-0 flex justify-between items-center px-6 py-4 z-10 border-b border-zinc-800/60 bg-zinc-950/80"
+        className="absolute top-0 left-0 right-0 flex justify-between items-center px-6 py-4 z-10 border-b border-zinc-800/60 bg-zinc-950/80 backdrop-blur-md"
         onClick={(e) => e.stopPropagation()}
       >
         <div>
@@ -235,7 +236,7 @@ function Lightbox({ project, onClose }: { project: Project; onClose: () => void 
         {total > 1 && (
           <button
             onClick={() => goTo((currentIdx - 1 + total) % total)}
-            className="absolute left-0 z-20 p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-white hover:bg-zinc-800 transition-colors"
+            className="absolute left-4 z-20 p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-white hover:bg-zinc-800 transition-colors shadow-lg active:scale-90"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -243,12 +244,12 @@ function Lightbox({ project, onClose }: { project: Project; onClose: () => void 
           </button>
         )}
 
-        <div className="rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl max-h-[65vh] flex items-center">
+        <div className="rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-2xl max-h-[65vh] flex items-center transition-all duration-300">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={gallery[currentIdx]}
             alt={`${project.title} screenshot ${currentIdx + 1}`}
-            className="max-w-full max-h-[65vh] object-contain select-none transition-opacity duration-150"
+            className="max-w-full max-h-[65vh] object-contain select-none transition-opacity duration-200"
             style={{ opacity: visible ? 1 : 0 }}
           />
         </div>
@@ -256,7 +257,7 @@ function Lightbox({ project, onClose }: { project: Project; onClose: () => void 
         {total > 1 && (
           <button
             onClick={() => goTo((currentIdx + 1) % total)}
-            className="absolute right-0 z-20 p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-white hover:bg-zinc-800 transition-colors"
+            className="absolute right-4 z-20 p-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-white hover:bg-zinc-800 transition-colors shadow-lg active:scale-90"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -272,7 +273,7 @@ function Lightbox({ project, onClose }: { project: Project; onClose: () => void 
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`h-1 rounded-full transition-all duration-300 ${
+              className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === currentIdx ? 'w-8 bg-white' : 'w-2 bg-zinc-700 hover:bg-zinc-500'
               }`}
             />
@@ -288,7 +289,6 @@ export default function ProjectsSection() {
   const colors = useColors();
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-  // FIXED: Memoise and sort projectsData by requested status alignment hierarchies
   const sortedProjects = useMemo(() => {
     return [...projectsData].sort((a, b) => {
       const statusA = a.status ?? 'live';
@@ -297,7 +297,6 @@ export default function ProjectsSection() {
     });
   }, []);
 
-  // Legend sorting to visually match layout presentation matrix output
   const sortedLegendStatus = useMemo(() => {
     return (Object.keys(STATUS_CONFIG) as Array<keyof typeof STATUS_CONFIG>).sort(
       (a, b) => STATUS_PRIORITY[a] - STATUS_PRIORITY[b]
@@ -306,32 +305,38 @@ export default function ProjectsSection() {
 
   return (
     <Section id="projects">
+    {/* Header */}
+    <div className="relative z-10 mb-16 px-4">
+      <span className={`inline-block text-[11px] font-mono font-bold tracking-[0.25em] ${colors.invertedTextMuted} uppercase mb-4`}>
+        Selected Works
+      </span>
+      
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        {/* Fully static layout - standard line breaking handles mobile/tablet beautifully */}
+        <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.15] ${colors.invertedText} max-w-3xl`}>
+          Explore my featured{' '}
+          <span className="font-serif italic font-bold text-zinc-500">creative</span>{' '}
+          builds.
+        </h2>
 
-      {/* Header */}
-      <div className="relative z-10 mb-12 px-4">
-        <span className={`inline-block text-[10px] font-bold tracking-[0.22em] ${colors.invertedTextMuted} uppercase mb-3`}>
-          Selected Works
-        </span>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight whitespace-nowrap ${colors.invertedText}`}>
-            <TypewriterTitle text="Featured Projects" />
-          </h2>
-          <p className={`${colors.invertedTextMuted} max-w-sm text-sm leading-relaxed md:text-right`}>
-            Production apps, internal tools, and side projects — all built solo.
-            Click any card to browse screenshots.
-          </p>
-        </div>
-
-        {/* Legend */}
-        <div className="flex items-center gap-4 mt-6 pt-5 border-t border-zinc-800/60">
-          {sortedLegendStatus.map((s) => (
-            <StatusBadge key={s} status={s} />
-          ))}
-        </div>
+        <p className={`${colors.invertedTextMuted} max-w-sm text-sm leading-relaxed lg:text-right font-normal shrink-0`}>
+          Production apps, internal tools, and standalone nodes — all engineered solo.
+          Click any deployment card to browse documentation and interface snapshots.
+        </p>
       </div>
 
+      {/* Legend */}
+      <div className="flex items-center flex-wrap gap-4 mt-8 pt-5 border-t border-zinc-800/20">
+        <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mr-1">
+          System Index //
+        </span>
+        {sortedLegendStatus.map((s) => (
+          <StatusBadge key={s} status={s} />
+        ))}
+      </div>
+    </div>
       {/* Grid */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 px-4">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
         {sortedProjects.map((project: Project) => (
           <ProjectCard
             key={project.id}
