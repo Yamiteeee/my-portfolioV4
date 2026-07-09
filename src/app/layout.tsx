@@ -84,11 +84,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // ⚡ ADDED HERE: Handles layout string injections smoothly
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-50">
+      {/* ⚡ ADDED HERE: Suppresses hydration error prompts from browser extensions */}
+      <body 
+        className="min-h-full flex flex-col bg-zinc-950 text-zinc-50"
+        suppressHydrationWarning
+      >
         <ColorProvider>
           {children}
         </ColorProvider>

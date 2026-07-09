@@ -27,8 +27,8 @@ export const bioData: BioData = {
   sectionTitle: "About Me",
  headline: "From data schema to fluid interface.",
   paragraphs: [
-    "I build full-stack web applications independently — from architecture decisions to deployment — using AI tools like Copilot and ChatGPT as part of my daily workflow, not as a crutch. I move fast because I own the whole problem, not just my slice of it.",
-    "Over the past year I shipped three production apps solo at work: a Flutter ticketing system, an internal file management platform, and a learning management system — each built from scratch and handed off to real users. On the side I've been building web projects too, including a resort landing and booking page and an inventory SaaS — with more in the pipeline.",
+    "I build full-stack web applications independently  from architecture decisions to deployment  using AI tools like Copilot and ChatGPT as part of my daily workflow, not as a crutch. I move fast because I own the whole problem, not just my slice of it.",
+    "Over the past year I shipped three production apps solo at work: a Flutter ticketing system, an internal file management platform, and a learning management system  each built from scratch and handed off to real users. On the side I've been building web projects too, including a resort landing and booking page and an inventory SaaS  with more in the pipeline.",
     "My current stack is Next.js with the App Router, Supabase for auth and real-time databases, and Vercel for deployment. I care about shipping something that works, is maintainable, and doesn't need a second person to keep it alive."
   ],
   avatarSrc: "/Bio/ProfilePic/Profile.jpg",
@@ -41,16 +41,18 @@ export const bioData: BioData = {
   // 15+ = honest count of tools actively used, not "mastered"
   stats: [
     { value: "~2 yrs", label: "Building software" },
-    { value: "7+",     label: "Projects shipped" },
+    { value: "8+",     label: "Projects shipped" },
     { value: "15+",    label: "Tools in my stack" },
   ],
 
-  expertise: [
+ expertise: [
     {
       category: "Architecture & Frontend",
       skills: [
         "Next.js (App Router)",
         "TypeScript",
+        "Refine Framework", //  ADDED: Showcases your enterprise state engine capability
+        "shadcn/ui",         // ADDED: Proves modern component-driven layout mastery
         "Tailwind CSS",
         "React Server Components",
         "State Management",

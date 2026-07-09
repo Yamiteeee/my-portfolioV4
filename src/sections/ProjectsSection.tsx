@@ -289,13 +289,9 @@ export default function ProjectsSection() {
   const colors = useColors();
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-  const sortedProjects = useMemo(() => {
-    return [...projectsData].sort((a, b) => {
-      const statusA = a.status ?? 'live';
-      const statusB = b.status ?? 'live';
-      return STATUS_PRIORITY[statusA] - STATUS_PRIORITY[statusB];
-    });
-  }, []);
+const sortedProjects = useMemo(() => {
+  return projectsData; // Direct reference keeps your layout in perfect array sequence!
+}, []);
 
   const sortedLegendStatus = useMemo(() => {
     return (Object.keys(STATUS_CONFIG) as Array<keyof typeof STATUS_CONFIG>).sort(
@@ -320,7 +316,7 @@ export default function ProjectsSection() {
         </h2>
 
         <p className={`${colors.invertedTextMuted} max-w-sm text-sm leading-relaxed lg:text-right font-normal shrink-0`}>
-          Production apps, internal tools, and standalone nodes — all engineered solo.
+          Production apps, internal tools, and standalone nodes  all engineered solo.
           Click any deployment card to browse documentation and interface snapshots.
         </p>
       </div>
