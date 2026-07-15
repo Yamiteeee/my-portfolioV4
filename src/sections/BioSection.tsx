@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react'; // Added useState & useEffect
 import Section from '@/components/Section';
 import TypewriterTitle from '@/components/TypewriterTitle';
 import { useColors } from '@/components/ColorProvider';
@@ -31,6 +31,17 @@ const ACCENT_COLORS = [
 
 export default function BioSection() {
   const colors = useColors();
+  
+  // Guard client-side mount to prevent Google Viewer race conditions
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    // Delay mounting slightly to allow Next.js hydration to finish smoothly
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <Section id="about">
@@ -101,18 +112,18 @@ export default function BioSection() {
             ==================================================================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-    {/* Left: narrative */}
-      <div className="lg:col-span-7 flex flex-col justify-center">
-        {/* Editorial Typographic Subheader mirroring the Hero font blend */}
-        <h2 className={`text-xl sm:text-2xl lg:text-3xl font-bold font-serif italic tracking-tighter leading-[1.2] mb-4 sm:mb-5 ${colors.text}`}>
-          Engineering systems with technical intent.
-        </h2>
-        <div className={`${colors.textMuted} space-y-4 sm:space-y-5 text-base leading-relaxed antialiased font-normal`}>
-          {bioData.paragraphs.map((paragraph, pIdx) => (
-            <p key={pIdx}>{paragraph}</p>
-          ))}
-        </div>
-      </div>
+          {/* Left: narrative */}
+          <div className="lg:col-span-7 flex flex-col justify-center">
+            {/* Editorial Typographic Subheader mirroring the Hero font blend */}
+            <h2 className={`text-xl sm:text-2xl lg:text-3xl font-bold font-serif italic tracking-tighter leading-[1.2] mb-4 sm:mb-5 ${colors.text}`}>
+              Engineering systems with technical intent.
+            </h2>
+            <div className={`${colors.textMuted} space-y-4 sm:space-y-5 text-base leading-relaxed antialiased font-normal`}>
+              {bioData.paragraphs.map((paragraph, pIdx) => (
+                <p key={pIdx}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
 
           {/* Right: skills card */}
           <div className="lg:col-span-5 w-full">
@@ -192,15 +203,23 @@ export default function BioSection() {
 
           {/* SINGLE RESPONSIVE CANVAS */}
           <div
-            className={`w-full rounded-xl overflow-hidden border ${colors.border} shadow-xs bg-zinc-100`}
+            className={`relative w-full rounded-xl overflow-hidden border ${colors.border} shadow-xs bg-zinc-100`}
             style={{ contain: 'layout style', height: 'clamp(400px, 55vh, 720px)' }}
           >
-            <iframe
-              src={`https://docs.google.com/gview?url=https://jsonporfolio.fun${bioData.cvSrc}&embedded=true`}
-              title="Jason Platino — Curriculum Vitae"
-              className="w-full h-full border-none"
-              loading="lazy"
-            />
+            {isMounted ? (
+              <iframe
+                src={`https://docs.google.com/gview?url=https://jsonporfolio.fun${bioData.cvSrc}&embedded=true`}
+                title="Jason Platino — Curriculum Vitae"
+                className="w-full h-full border-none"
+              />
+            ) : (
+              // Soothing minimal loading state while the document mounts
+              <div className="absolute inset-0 flex items-center justify-center bg-zinc-50/50">
+                <span className={`text-xs uppercase tracking-[0.18em] ${colors.textMuted} animate-pulse`}>
+                  Loading PDF Preview...
+                </span>
+              </div>
+            )}
           </div>
 
         </div>

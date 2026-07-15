@@ -41,7 +41,7 @@ export const bioData: BioData = {
   // 15+ = honest count of tools actively used, not "mastered"
   stats: [
     { value: "~2 yrs", label: "Building software" },
-    { value: "8+",     label: "Projects shipped" },
+    { value: "9+",     label: "Projects shipped" },
     { value: "15+",    label: "Tools in my stack" },
   ],
 

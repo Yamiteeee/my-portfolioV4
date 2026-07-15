@@ -29,6 +29,20 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/Yamiteeee/inventory-saas",
   },
 
+  {
+  id: "mindspace-ai",
+  title: "MindSpace AI Wellness Companion",
+  description: "A private, secure, and emotionally intelligent AI wellness companion. Features high-performance Web Speech API synthesis with natural sentence-pacing, low-latency streaming integration, automatic scrolling, and reliable client-side rate-limit fallback mechanisms.",
+  tags: ["Next.js", "Web Speech API", "Groq AI API", "TypeScript", "Tailwind CSS"],
+  folderSlug: "mindspace-ai",
+  imageExtension: "jpg",
+  imageCount: 2, // Adjust this based on how many screenshots you take!
+  status: "live",
+  role: "Solo · Full Stack",
+  projectUrl: "https://my-ai-zeta-eight.vercel.app", // Replace with your actual MindSpace deployment link!
+  githubUrl: "https://github.com/Yamiteeee/my-ai", // Replace with your repository link if different!
+},
+
 
     {
       id: "my-hospital-booking",
