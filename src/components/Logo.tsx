@@ -1,4 +1,3 @@
-// src/components/Logo.tsx
 "use client";
 
 import React from 'react';
@@ -12,7 +11,7 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
   return (
     <div className={`group inline-flex items-center gap-3 font-sans select-none cursor-pointer ${className}`}>
       
-      {/* Injecting optimized inline CSS for the fine mechanical animations */}
+      {/* Optimized inline layout styles */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes subtleSpin {
           from { transform: rotate(0deg); }
@@ -42,7 +41,7 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-full transition-all duration-500 group-hover:scale-105"
         >
-          {/* Outer Rotating Architectural Track */}
+          {/* Outer Rotating Track */}
           <circle 
             cx="50" 
             cy="50" 
@@ -53,10 +52,10 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
             strokeDasharray="6 6"
           />
 
-          {/* Precision Laser Engineering Indicators (Crosshairs) */}
+          {/* Precision Crosshairs */}
           <path d="M50 4v6M50 90v6M4 50h6M90 50h6" stroke="currentColor" strokeWidth="2" className="text-zinc-300 dark:text-zinc-700/60" strokeLinecap="round" />
           
-          {/* Core Geometric Paths (With reactive group hover offsets) */}
+          {/* Core Paths */}
           <path
             d="M38 32H58V54C58 63 50 68 42 68"
             stroke="currentColor"
@@ -79,7 +78,7 @@ export default function Logo({ className = "", size = 32 }: LogoProps) {
         <div className="absolute w-1 h-1 rounded-full bg-zinc-900 dark:bg-stone-50 group-hover:bg-emerald-500 dark:group-hover:bg-emerald-400 transition-colors duration-300" />
       </div>
 
-      {/* Editorial Text Layer Component with Hover Laser Shimmer */}
+      {/* Editorial Text Layer */}
       <span className="animate-shimmer-text text-sm font-black tracking-[0.3em] uppercase text-zinc-900 dark:text-stone-100 transition-colors duration-300">
         J.Platino
       </span>

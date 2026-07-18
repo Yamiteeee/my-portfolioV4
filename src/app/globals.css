@@ -22,5 +22,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* FIX: Apply your configured Geist Sans theme variable with fallbacks */
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* Optimization: Ensure smooth text rendering across webkit browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+  Optimization Layer:
+  Hides horizontal scrollbars visually while maintaining native swiping features 
+  (Perfect for your horizontal certifications/projects carousels!)
+*/
+@utility scrollbar-none {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

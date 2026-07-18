@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ColorProvider } from "@/components/ColorProvider";
@@ -14,7 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Production-ready SEO Architecture
+// Premium high-contrast vector string used to completely strip out default host headers
+const svgFavicon = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'><rect width='100' height='100' rx='22' fill='%2309090b'/><circle cx='50' cy='50' r='42' stroke='%2327272a' stroke-width='3' stroke-dasharray='6 4'/><path d='M38 32H58V54C58 63 50 68 42 68' stroke='%23fafafa' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/><path d='M58 32H70C76 32 80 36 80 42C80 48 76 52 70 52H58' stroke='%2371717a' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/><circle cx='50' cy='50' r='4' fill='%2310b981'/></svg>`;
+
 export const metadata: Metadata = {
   title: {
     default: "Jason Platino | Full-Stack Engineer & Systems Builder",
@@ -24,16 +25,12 @@ export const metadata: Metadata = {
   keywords: ["Jason Platino", "Full-Stack Engineer", "Software Developer Portfolio", "Next.js Portfolio", "Supabase Developer", "Web Performance"],
   authors: [{ name: "Jason Platino" }],
   creator: "Jason Platino",
+  metadataBase: new URL("https://jsonportfolio.fun"), 
   
-  // FIXED: Set to your actual apex domain (without the "t") to align with your Hostinger registry
-  metadataBase: new URL("https://jsonporfolio.fun"), 
-  
-  // GOOGLE SEARCH CONSOLE INTEGRATION: Put your verification string here
   verification: {
     google: "YOUR_GOOGLE_VERIFICATION_TOKEN_HERE", 
   },
 
-  // Search Engine Crawler Directives
   robots: {
     index: true,
     follow: true,
@@ -46,11 +43,10 @@ export const metadata: Metadata = {
     },
   },
 
-  // Open Graph (LinkedIn, Discord, Meta Platforms)
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://jsonporfolio.fun", // Fixed domain typo
+    url: "https://jsonportfolio.fun",
     title: "Jason Platino | Full-Stack Engineer & Systems Builder",
     description: "Explore the software engineering portfolio of Jason Platino. Specializing in independent full-stack architecture, high-performance Next.js apps, and maintainable systems implementation.",
     siteName: "Jason Platino Portfolio",
@@ -64,7 +60,6 @@ export const metadata: Metadata = {
     ],
   },
 
-  // X / Twitter Cards
   twitter: {
     card: "summary_large_image",
     title: "Jason Platino | Full-Stack Engineer & Systems Builder",
@@ -72,9 +67,15 @@ export const metadata: Metadata = {
     images: ["/Bio/ProfilePic/Profile.jpg"],
   },
 
-  // High-Contrast Web Tab Optimization (Optimized for 16x16 / 32x32 viewing)
+  // ─── CRITICAL MOBILE FIXED ICON MATRIX ──────────────────────────────────────
   icons: {
-    icon: `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'><circle cx='50' cy='50' r='46' fill='%23111111' /><circle cx='50' cy='50' r='40' stroke='%23333333' stroke-width='4' /><path d='M36 32H56V54C56 62 49 67 41 67' stroke='%23ffffff' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/><path d='M56 32H68C74 32 78 36 78 42C78 48 74 52 68 52H56' stroke='%23a1a1aa' stroke-width='10' stroke-linecap='round' stroke-linejoin='round'/><circle cx='50' cy='50' r='3.5' fill='%2334d399' /></svg>`,
+    icon: [
+      { url: svgFavicon, type: 'image/svg+xml' },
+    ],
+    shortcut: svgFavicon,
+    apple: [
+      { url: svgFavicon, type: 'image/svg+xml' },
+    ],
   },
 };
 
@@ -84,13 +85,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // ⚡ ADDED HERE: Handles layout string injections smoothly
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      {/* ⚡ ADDED HERE: Suppresses hydration error prompts from browser extensions */}
       <body 
         className="min-h-full flex flex-col bg-zinc-950 text-zinc-50"
         suppressHydrationWarning

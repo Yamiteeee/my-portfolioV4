@@ -1,5 +1,4 @@
 // src/data/bio.ts
-
 export interface SkillGroup {
   category: string;
   skills: string[];
@@ -26,11 +25,23 @@ export const bioData: BioData = {
   sectionIndex: "",
   sectionTitle: "About Me",
  headline: "From data schema to fluid interface.",
-  paragraphs: [
-    "I build full-stack web applications independently  from architecture decisions to deployment  using AI tools like Copilot and ChatGPT as part of my daily workflow, not as a crutch. I move fast because I own the whole problem, not just my slice of it.",
-    "Over the past year I shipped three production apps solo at work: a Flutter ticketing system, an internal file management platform, and a learning management system  each built from scratch and handed off to real users. On the side I've been building web projects too, including a resort landing and booking page and an inventory SaaS  with more in the pipeline.",
-    "My current stack is Next.js with the App Router, Supabase for auth and real-time databases, and Vercel for deployment. I care about shipping something that works, is maintainable, and doesn't need a second person to keep it alive."
-  ],
+paragraphs: [
+      "I build full-stack web applications independently from architecture decisions to deployment using AI tools like Copilot and ChatGPT as part of my daily workflow, not as a crutch. I move fast because I own the whole problem, not just my slice of it.",
+      
+      "As a self-driven Full-Stack Engineer, my focus is on velocity, architectural autonomy, and shipping software that solves real enterprise problems. Working inside the EdTech space, I operate as a solo engineering unit—designing, deploying, and maintaining a robust suite of applications used across corporate environments.",
+      
+      "Enterprise & Solo Deployments Include:",
+      
+      "• Enterprise EdTech Architecture: Engineered and shipped a comprehensive, city-scale Learning Management System (LMS).",
+      
+      "• Mobile Ecosystems: Built and launched a cross-platform Flutter ticketing application for immediate workplace triage.",
+      
+      "• Data Infrastructure: Designed a secure, internal enterprise file management platform.",
+      
+      "• Commercial SaaS & Web: Shipped multi-tenant inventory management systems and custom booking engines for private clients.",
+      
+      "My current stack is Next.js with the App Router, Supabase for auth and real-time databases, and Vercel for deployment. I care about shipping something that works, is maintainable, and doesn't need a second person to keep it alive."
+    ],
   avatarSrc: "/Bio/ProfilePic/Profile.jpg",
   cvSrc: "/Bio/Cv/Jason_Platino_Resume.pdf",
   cvDownloadName: "Jason_Platino_Resume.pdf",

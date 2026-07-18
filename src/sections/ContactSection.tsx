@@ -27,32 +27,32 @@ export default function ContactSection() {
             Get In Touch
           </span>
 
-       
-    {/* Editorial Header */}
-    <h2
-      className={`w-full text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter leading-[1.1] mb-6 ${colors.invertedText} flex flex-col sm:inline block`}
-    >
-      {/* Segment 1: Fixed Opener String Sequence */}
-      <span>
-        <TypewriterTitle text="Let's collaborate on your " />
-      </span>
-      
-      {/* Wrapper for the animating word and closing segment to block layout shift loops */}
-      <span className="inline-flex items-baseline justify-center sm:justify-start">
-        {/* Segment 2: FIXED - Static structural container bounds completely halt letter twitching */}
-        <span className="text-zinc-500 font-bold font-serif italic inline-block text-center sm:text-left w-[4.5ch] sm:w-[5ch] h-[1.1em] overflow-hidden shrink-0 select-none mr-1 sm:mr-2">
-          <RetypingWord 
-            words={["next", "dream", "scale", "custom", "epic"]} 
-            typingSpeed={120}
-            deletingSpeed={70}
-            pauseDuration={2000}
-          />
-        </span>
-        
-        {/* Segment 3: Fixed Closing String Sequence */}
-        <TypewriterTitle text="build." delay={1.2} />
-      </span>
-    </h2>
+          {/* Editorial Header */}
+          <h2
+            className={`w-full text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter leading-[1.2] sm:leading-[1.1] mb-6 ${colors.invertedText} flex flex-wrap items-center justify-center`}
+          >
+            {/* Segment 1: Fixed Opener String Sequence */}
+            <span className="mr-2">
+              <TypewriterTitle text="Let's collaborate on your" />
+            </span>
+            
+            {/* Wrapper for the animating word and closing segment to block layout shift loops */}
+            <span className="inline-flex flex-wrap items-baseline justify-center">
+              {/* Segment 2: FIXED - Static structural container bounds completely halt letter twitching */}
+              <span className="text-zinc-500 font-bold font-serif italic inline-block text-center sm:text-left min-w-[5.5ch] sm:w-[5ch] overflow-hidden shrink-0 select-none mx-1 sm:mr-2">
+                <RetypingWord 
+                  words={["next", "dream", "scale", "custom", "epic"]} 
+                  typingSpeed={120}
+                  deletingSpeed={70}
+                  pauseDuration={2000}
+                />
+              </span>
+              
+              {/* Segment 3: Fixed Closing String Sequence */}
+              <TypewriterTitle text="build." delay={1.2} />
+            </span>
+          </h2>
+
           {/* Body copy */}
           <p
             className={`${colors.invertedTextMuted} w-full mx-auto mb-10 text-sm sm:text-base md:text-lg leading-relaxed font-normal`}
@@ -111,49 +111,49 @@ export default function ContactSection() {
             </div>
 
             {/* FIXED: Self-contained cubic deceleration animation engine */}
-<a
-  href="#"
-  onClick={(e) => {
-    e.preventDefault();
-    
-    const startY = window.scrollY || document.documentElement.scrollTop;
-    if (startY === 0) return;
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                
+                const startY = window.scrollY || document.documentElement.scrollTop;
+                if (startY === 0) return;
 
-    const duration = 1200; // Animation timeline duration in milliseconds
-    const startTime = performance.now();
+                const duration = 1200; // Animation timeline duration in milliseconds
+                const startTime = performance.now();
 
-    // Premium cubic deceleration math curve: gives it that smooth luxurious slowing-down feel
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+                // Premium cubic deceleration math curve: gives it that smooth luxurious slowing-down feel
+                const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
 
-    function step(currentTime: number) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      const easeProgress = easeOutCubic(progress);
-      const nextY = startY * (1 - easeProgress);
+                function step(currentTime: number) {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  
+                  const easeProgress = easeOutCubic(progress);
+                  const nextY = startY * (1 - easeProgress);
 
-      window.scrollTo(0, nextY);
+                  window.scrollTo(0, nextY);
 
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      }
-    }
+                  if (progress < 1) {
+                    requestAnimationFrame(step);
+                  }
+                }
 
-    requestAnimationFrame(step);
-  }}
-  className="group flex items-center gap-1.5 text-xs font-semibold tracking-widest text-zinc-400 hover:text-stone-50 uppercase transition-colors duration-300 py-2 px-1 cursor-pointer"
->
-  <span>Back To Top</span>
-  <svg 
-    className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:-translate-y-0.5" 
-    fill="none" 
-    viewBox="0 0 24 24" 
-    stroke="currentColor" 
-    strokeWidth={2.5}
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-  </svg>
-</a>
+                requestAnimationFrame(step);
+              }}
+              className="group flex items-center gap-1.5 text-xs font-semibold tracking-widest text-zinc-400 hover:text-stone-50 uppercase transition-colors duration-300 py-2 px-1 cursor-pointer"
+            >
+              <span>Back To Top</span>
+              <svg 
+                className="w-3.5 h-3.5 transform transition-transform duration-300 group-hover:-translate-y-0.5" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+              </svg>
+            </a>
           </div>
 
         </div>
